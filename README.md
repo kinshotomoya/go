@@ -10,3 +10,7 @@ $ go run filename
 ```shell
 $ go build filename
 ```
+
+## TODO
+続きはここから
+https://go.dev/doc/tutorial/add-a-test

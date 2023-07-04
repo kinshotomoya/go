@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"runtime"
+	"time"
 )
 
 func main() {
@@ -15,17 +17,20 @@ func main() {
 	for2()
 	for3()
 	ifWithShortStat()
+	swhich()
+	switch2()
+	defers()
 }
 
 func basicType() {
 	var (
-		i1 int = 1 // 符号あり。32bitか64bit（CPUに依存）
-		i2 int16 = -10 // 符号あり
-		i3 int32 = -100 // 符号あり
-		i4 int64 = -1000 // 符号あり　
-		i5 uint = 1 // 符号なし
-		i6 uint8 = 2 // 符号なし
-		i7 rune = 333 // int32と同じ。unicodeのコードポインタとして利用される
+		i1 int     = 1     // 符号あり。32bitか64bit（CPUに依存）
+		i2 int16   = -10   // 符号あり
+		i3 int32   = -100  // 符号あり
+		i4 int64   = -1000 // 符号あり
+		i5 uint    = 1     // 符号なし
+		i6 uint8   = 2     // 符号なし
+		i7 rune    = 333   // int32と同じ。unicodeのコードポインタとして利用される
 		i8 float32 = 1.1
 		i9 float64 = 1.1
 	)
@@ -77,7 +82,7 @@ func forstate() {
 
 func for2() {
 	sum := 1
-	for ; sum< 1000; {
+	for sum < 1000 {
 		sum += sum
 	}
 	fmt.Println("\n", sum)
@@ -101,4 +106,37 @@ func ifWithShortStat() {
 		// else内でも使える
 		fmt.Println(v)
 	}
+}
+
+func swhich() {
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		fmt.Printf("%s.\n", os)
+	}
+}
+
+func switch2() {
+	currentDay := time.Now()
+	switch day := currentDay.Weekday(); day {
+	case time.Sunday:
+		fmt.Println("wooooo")
+	case time.Monday:
+		fmt.Println("buuuuu")
+	default:
+		fmt.Println("nothing")
+	}
+}
+
+func defers() {
+	word := "hello"
+	// deferは即時評価されるが、実行はreturnの前
+	defer fmt.Println(word)
+
+	word = "hiiii"
+
+	fmt.Println("ssss")
 }

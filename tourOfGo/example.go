@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 	basicType()
+	typeConversion()
 }
 
 func basicType() {
@@ -19,4 +20,15 @@ func basicType() {
 		i9 float64 = 1.1
 	)
 	fmt.Printf("%T", i1, i2, i3, i4, i5, i6, i7, i8, i9)
+}
+
+func typeConversion() {
+	var x, y int = 3, 4
+
+	// 明示的に型変換できる
+	f := float64(x)
+	u := uint(y)
+
+	fmt.Printf("\n%T", f, u)
+
 }

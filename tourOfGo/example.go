@@ -5,6 +5,9 @@ import "fmt"
 func main() {
 	basicType()
 	typeConversion()
+	typeInterface()
+	constant()
+	constantNumber()
 }
 
 func basicType() {
@@ -31,4 +34,27 @@ func typeConversion() {
 
 	fmt.Printf("\n%T", f, u)
 
+}
+
+func typeInterface() {
+	// 明示的に型を指定しなくても型推論する
+	v := true
+	fmt.Printf("\nv is type of %T", v)
+}
+
+func constant() {
+	// 定数を
+	const Name = "javen"
+	fmt.Println("\n", Name)
+}
+
+func constantNumber() {
+	// シフト計算
+	// ↓はint型
+	const Big = 1 << 60
+	fmt.Printf("type is %T. value is %v", Big, Big)
+
+	const Small float64 = 1 << 60
+	// TODO: 浮動小数点の理解
+	fmt.Printf("\ntype is %T. value is %v", Small, Small)
 }

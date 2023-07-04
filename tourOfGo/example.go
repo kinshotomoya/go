@@ -3,6 +3,10 @@ package main
 import "fmt"
 
 func main() {
+	basicType()
+}
+
+func basicType() {
 	var (
 		i1 int = 1 // 符号あり。32bitか64bit（CPUに依存）
 		i2 int16 = -10 // 符号あり

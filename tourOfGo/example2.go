@@ -9,6 +9,9 @@ func main() {
 	structs()
 	arrays()
 	slices()
+	slices2()
+	slices3()
+	makeSlice()
 }
 
 func pointer() {
@@ -89,4 +92,52 @@ func slices() {
 	fmt.Println(names1)
 	fmt.Println(names2)
 
+}
+
+func slices2() {
+	s := []struct {
+		i int
+		b bool
+	}{
+		{
+			1,
+			true,
+		},
+	}
+	fmt.Println(s)
+
+	n := []int{1, 3, 5, 7, 11}
+
+	n = n[:3]
+	fmt.Println(n)
+
+	n = n[2:]
+	fmt.Println(n)
+
+}
+
+func slices3() {
+	s := []int{1, 2, 3, 4, 5, 6, 7}
+	s = s[:4]
+
+	fmt.Printf("len: %d, capacity: %d\n", len(s), cap(s))
+	s = append(s, 1, 1, 1, 1, 1, 1, 1)
+	fmt.Printf("len: %d, capacity: %d\n", len(s), cap(s))
+
+	var nillS []int
+	fmt.Println(nillS)
+
+}
+
+func makeSlice() {
+	// makeを利用してsliceを作成することで、事前にsliceの要素数（length）、データ元のarrayの要素数（capacity）を指定して
+	// sliceを作成することができる
+	// こうすることで、データ元の固定長であるarrayのサイズを超えたらさらにメモリア割当てしてarrayを拡張するというパフォーマンスが
+	// 悪い処理をすることになってしまう
+	// arrayのサイズ拡張は、元の2倍ずつ拡張されるっぽい（2 -> 4 -> 8 -> 16）
+	// 参考：https://zenn.dev/rescuenow/articles/41b02c28a9b06f
+	s := make([]int, 5)
+	fmt.Printf("len: %d, capacity: %d\n", len(s), cap(s))
+
+	// TODO: 長さ指定しない場合（[]int{}でslice作成）と長さ指定する場合（make([]int, n)）とでappendにどれくらい差があるのかやってみる
 }

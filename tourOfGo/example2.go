@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -12,6 +13,7 @@ func main() {
 	slices2()
 	slices3()
 	makeSlice()
+	jsonEncode()
 }
 
 func pointer() {
@@ -140,4 +142,18 @@ func makeSlice() {
 	fmt.Printf("len: %d, capacity: %d\n", len(s), cap(s))
 
 	// TODO: 長さ指定しない場合（[]int{}でslice作成）と長さ指定する場合（make([]int, n)）とでappendにどれくらい差があるのかやってみる
+}
+
+func jsonEncode() {
+	body := map[string]string{
+		"name": "javen",
+	}
+
+	bytes, err := json.Marshal(body)
+	if err != nil {
+		fmt.Println("JSON marshal error: ", err)
+		return
+	}
+
+	fmt.Println(string(bytes))
 }
